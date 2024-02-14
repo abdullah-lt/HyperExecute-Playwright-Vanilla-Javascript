@@ -32,11 +32,22 @@ module.exports = defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'chrome:latest@lambdatest',
+      name: 'chromium',
       use: {
-        viewport: { width: 1280, height: 720 }
-      }
-      
-    }
+        ...devices['Desktop Chrome'],
+      },
+    },
+    {
+      name: 'firefox',
+      use: {
+        ...devices['Desktop Firefox'],
+      },
+    },
+    {
+      name: 'webkit',
+      use: {
+        ...devices['Desktop Safari'],
+      },
+    },
   ],
 });
