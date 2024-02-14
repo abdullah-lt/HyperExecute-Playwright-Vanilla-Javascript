@@ -8,6 +8,8 @@ autosplit: true
 retryOnFailure: false
 maxRetries: 1
 concurrency: 1
+env:
+  PWTEST_SKIP_TEST_OUTPUT: 1
 pre:
   - npm install
   - npx playwright install
@@ -17,7 +19,7 @@ cacheDirectories:
 testDiscovery:
   type: raw
   mode: static
-  command: cat hello.txt
-testRunnerCommand: npm run test-ct
+  command: grep -lr 'test(' src/*
+testRunnerCommand: npx playwright test $test -c playwright-ct.config.js --headed
 jobLabel: [playwright-VanillaJS, win, autosplit] 
 captureScreenRecordingForScenarios: true
